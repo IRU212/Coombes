@@ -10,4 +10,16 @@ services:
             - 8080:8080
         volumes:
             - ./backend:/var/www/app
+    next:
+        build:
+            dockerfile: Dockerfile
+            context: ./docker/next
+        container_name: coombes-next
+        tty: true
+        ports:
+            - 3000:3000
+        volumes:
+        - ./frontend:/var/www/next
+        environment:
+        - WATCHPACK_POLLING=true
 
