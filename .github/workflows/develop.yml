@@ -15,8 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: copy .env
+      - name: message
         run: |
-          cp ./.env ./.env.example
-          cp ./backend/.env ./backend/.env.local
+          echo "developブランチにpushされました"
+          echo "検証を開始します"
 
