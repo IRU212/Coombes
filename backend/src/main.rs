@@ -1,15 +1,20 @@
-use actix_web::{get, App, HttpResponse, HttpServer, Responder};
+use actix_web::{get, web, App, HttpServer};
+
+struct AppState {
+    app_name: String,
+}
 
 #[get("/")]
-async fn hello() -> impl Responder {
-    HttpResponse::Ok().body("Hello World! from RUST")
+async fn index(data: web::Data<AppState>) -> String {
+    let app_name = &data.app_name;
+    format!("Hello {app_name}!")
 }
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
-            .service(hello)
+            .service(index)
     })
         .bind(("0.0.0.0", 8080))?
         .run()

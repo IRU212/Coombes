@@ -22,4 +22,20 @@ services:
         - ./frontend:/var/www/next
         environment:
         - WATCHPACK_POLLING=true
-
+    db:
+        image: mysql:8.0
+        container_name: coombes_db
+        cap_add:
+        - SYS_NICE
+        volumes:
+        - ./data/db-store:/var/lib/mysql
+        - ./data/logs/db:/var/log/mysql
+        - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+        environment:
+            - MYSQL_DATABASE=${DB_NAME}
+            - MYSQL_USER=${DB_USER}
+            - MYSQL_PASSWORD=${DB_PASS}
+            - MYSQL_ROOT_PASSWORD=${DB_PASS}
+            - TZ=${TZ}
+        ports:
+        - 3306:${DB_PORT}
