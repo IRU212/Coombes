@@ -17,6 +17,6 @@ jobs:
 
       - name: copy .env
         run: |
-          cp ./.env.example ./.env
-          cp ./backend/.env.local ./backend/.env
+          cp ./.env ./.env.example
+          cp ./backend/.env ./backend/.env.local
 
