@@ -14,6 +14,9 @@ next:
 	${DOCKER_CMD} exec next bash
 db:
 	${DOCKER_CMD} exec db bash
+cp-env:
+	cp ./.env.example ./.env
+	cp ./backend/.env.local ./backend/.env
 # rust
 rust-install:
 	${APP_CMD} cargo add diesel --features mysql --features r2d2
